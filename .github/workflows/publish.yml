@@ -1,0 +1,28 @@
+name: publish npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    if: github.repository == 'bigballsports/bbs-typescript-sdk'
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm install --ignore-scripts
+      - run: npm test
+      - run: npm run build
+      - run: npm run verify-package
+      - name: Require the release tag to equal the package version
+        run: test "$GITHUB_REF_NAME" = "v$(node -p "require('./package.json').version")"
+      - run: npm publish --access public --provenance

@@ -1,0 +1,67 @@
+{
+  "name": "@bigballsdata/sdk",
+  "version": "0.1.8",
+  "description": "Official TypeScript SDK for the Big Balls Sports Data API.",
+  "author": {
+    "name": "Big Balls Sports",
+    "email": "support@bigballsdata.com",
+    "url": "https://bigballsdata.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigballsports/bbs-typescript-sdk.git"
+  },
+  "homepage": "https://bigballsdata.com/docs",
+  "bugs": {
+    "url": "https://github.com/bigballsports/bbs-typescript-sdk/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./ops": {
+      "types": "./dist/ops.d.ts",
+      "import": "./dist/ops.js",
+      "default": "./dist/ops.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --noEmit false",
+    "test:types": "tsc -p tsconfig.type-tests.json",
+    "test": "vitest run --passWithNoTests && npm run test:types",
+    "prepublishOnly": "npm run build",
+    "verify-package": "node scripts/verify-package.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "bigballsdata",
+    "sports-api",
+    "sdk",
+    "football",
+    "nba",
+    "nfl",
+    "nhl",
+    "mlb",
+    "cricket",
+    "ufc"
+  ],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "22.9.0",
+    "typescript": "5.6.3",
+    "vitest": "1.6.1"
+  }
+}
