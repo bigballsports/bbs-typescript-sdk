@@ -418,7 +418,25 @@ export interface GetPlayersParams {
   offset?: number;
 }
 
-export type GetPlayersData = Array<unknown>;
+export type GetPlayersData = Array<{
+    id?: string;
+    name?: string;
+    position?: string | null;
+    jersey_number?: string | null;
+    headshot_url?: string | null;
+    nationality?: string | null;
+    team_id?: string | null;
+    team_name?: string | null;
+    league_name?: string | null;
+    sport?: string | null;
+    /** Stored height with its recorded units. No conversion is inferred. */
+    height?: string | null;
+    /** Stored weight with its recorded units. No conversion is inferred. */
+    weight?: string | null;
+    date_of_birth?: string | null;
+    /** Completed calendar years at response generation using the UTC date. Null when birth date is missing, invalid, future-dated or outside the supported age range. */
+    age?: number | null;
+  }>;
 
 export interface GetTeamsByIdFormParams {
   id: string;
